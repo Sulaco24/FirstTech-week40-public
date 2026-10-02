@@ -56,13 +56,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-s
 .kpi .delta{font-size:11px;font-weight:600;margin-top:2px;}
 .kpi .lbl{font-size:11px;color:var(--muted);margin-top:4px;}
 .d-up{color:var(--green);}.d-down{color:var(--red);}.d-flat{color:var(--grey);}
-.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;}
-.team-card{background:white;border:1px solid var(--border);border-radius:8px;overflow:hidden;}
-.tc-hdr{display:flex;justify-content:space-between;align-items:center;padding:7px 11px;}
+.team-grid{display:grid;grid-template-columns:repeat(2,1fr);grid-auto-rows:1fr;gap:7px;}
+.team-card{background:white;border:1px solid var(--border);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;}
+.tc-hdr{display:flex;justify-content:space-between;align-items:center;padding:7px 11px;flex-shrink:0;}
 .tc-name{color:white;font-weight:700;font-size:12px;}
 .tc-count{background:rgba(255,255,255,.25);color:white;border-radius:20px;padding:1px 8px;font-size:12px;font-weight:800;}
-.tc-body{padding:7px 11px;display:flex;flex-wrap:wrap;gap:2px 0;}
-.person{display:flex;align-items:center;gap:4px;font-size:11.5px;width:50%;padding:1.5px 0;}
+.tc-body{padding:9px 11px;display:grid;grid-template-columns:repeat(var(--cols,1),1fr);column-gap:10px;row-gap:4px;align-content:space-evenly;flex:1;}
+.person{display:flex;align-items:center;gap:4px;font-size:11.5px;padding:1.5px 0;}
 .person.exiting-soon{background:#fff7ed;border-radius:3px;}
 .person.exited-row{opacity:.55;}
 .rd{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
@@ -232,12 +232,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-s
   <div class="team-grid">
 
     <!-- HEALTH SME — ~8.2 FTE -->
-    <div class="team-card" style="grid-column:span 2;">
+    <div class="team-card">
       <div class="tc-hdr" style="background:#16a34a;">
         <span class="tc-name">Health SME <span style="font-size:10px;font-weight:400;opacity:.8;">· KSA SME · Individual · UAE SME (paused) · Josoor</span></span>
         <span class="tc-count">~8.2</span>
       </div>
-      <div class="tc-body">
+      <div class="tc-body" style="--cols:2;">
         <div class="person"><span class="rd rd-be"></span>Alex Chertkov <span style="font-size:9px;color:var(--muted);margin-left:2px;">dual-stream load + leave carryover — no update this period</span></div>
         <div class="person exiting-soon"><span class="rd rd-be"></span>Aliaksandr Yanachkin <span style="font-size:9px;color:#92400e;font-weight:700;margin-left:2px;">⚑ exits Oct 14, confirmed</span></div>
         <div class="person"><span class="rd rd-qa"></span>Yulia Baranouskaya</div>
@@ -246,52 +246,47 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-s
         <div class="person"><span class="rd rd-qa"></span>Ina Fedarenka</div>
         <div class="person"><span class="rd rd-be"></span>Dzmitry Kavalchuk <span style="font-size:9px;color:var(--muted);margin-left:2px;">UAE SME</span></div>
         <div class="person"><span class="rd rd-qa"></span>Khrystsina Fesko</div>
-        <div class="person exiting-soon" style="width:100%"><span class="rd rd-qa"></span>Oleksandr Skomoroha <span style="font-size:9px;color:#92400e;font-weight:700;margin-left:2px;">⚑ exits Oct 30, confirmed this week · brokering automation-engineer redeployment to KSA SME before departure</span></div>
+        <div class="person exiting-soon" style="grid-column:1/-1;"><span class="rd rd-qa"></span>Oleksandr Skomoroha <span style="font-size:9px;color:#92400e;font-weight:700;margin-left:2px;">⚑ exits Oct 30, confirmed this week · brokering automation-engineer redeployment to KSA SME before departure</span></div>
       </div>
     </div>
 
-    <!-- SHORY + SUPERAPP — stacked in one column to close the gap under the taller Health SME card -->
-    <div style="display:flex;flex-direction:column;gap:7px;">
-
-      <!-- SHORY — ~3.2 FTE -->
-      <div class="team-card">
-        <div class="tc-hdr" style="background:#d97706;">
-          <span class="tc-name">Shory <span style="font-size:10px;font-weight:400;opacity:.8;">· Motor · Marine · Integration · Platform Core</span></span>
-          <span class="tc-count">~3.2</span>
-        </div>
-        <div class="tc-body">
-          <div class="person" style="width:100%"><span class="rd rd-qa"></span>Valiantsin Boltach <span style="font-size:9px;color:var(--muted);margin-left:2px;">surfaced Sukoon integration risk this week</span></div>
-          <div class="person" style="width:100%"><span class="rd rd-be"></span>Vladimir Klepikov <span style="font-size:9px;color:var(--muted);margin-left:2px;">no update this period</span></div>
-          <div class="person" style="width:100%"><span class="rd rd-be"></span>Evgenii Kuznetsov <span style="font-size:9px;color:var(--muted);margin-left:2px;">no update this period</span></div>
-          <div class="person exiting-soon" style="width:100%"><span class="rd rd-be"></span>Mikhail Gusev <span style="font-size:9px;color:#92400e;font-weight:700;margin-left:2px;">⚑ exits Oct 6 (4 days) · structured handover to successor underway</span></div>
-        </div>
+    <!-- SHORY — ~3.2 FTE -->
+    <div class="team-card">
+      <div class="tc-hdr" style="background:#d97706;">
+        <span class="tc-name">Shory <span style="font-size:10px;font-weight:400;opacity:.8;">· Motor · Marine · Integration · Platform Core</span></span>
+        <span class="tc-count">~3.2</span>
       </div>
-
-      <!-- SUPERAPP — 3 FTE -->
-      <div class="team-card">
-        <div class="tc-hdr" style="background:#4d7c0f;">
-          <span class="tc-name">SuperApp <span style="font-size:10px;opacity:.8;">· highest-rated stream per Karim Sallam</span></span>
-          <span class="tc-count">3</span>
-        </div>
-        <div class="tc-body">
-          <div class="person" style="width:100%"><span class="rd rd-fe"></span>Ashot Martirosyan <span style="font-size:9px;color:var(--muted);margin-left:2px;">absorbing extra PR-review load from slower parallel contributors</span></div>
-          <div class="person" style="width:100%"><span class="rd rd-fe"></span>Yuriy Kalugin <span style="font-size:9px;color:var(--green);margin-left:2px;">✅ engagement extended through December, confirmed this week</span></div>
-          <div class="person" style="width:100%"><span class="rd rd-qa"></span>Haykanush Abelyan <span style="font-size:9px;color:var(--muted);margin-left:2px;">QA Lead — no update this period</span></div>
-        </div>
+      <div class="tc-body">
+        <div class="person"><span class="rd rd-qa"></span>Valiantsin Boltach <span style="font-size:9px;color:var(--muted);margin-left:2px;">surfaced Sukoon integration risk this week</span></div>
+        <div class="person"><span class="rd rd-be"></span>Vladimir Klepikov <span style="font-size:9px;color:var(--muted);margin-left:2px;">no update this period</span></div>
+        <div class="person"><span class="rd rd-be"></span>Evgenii Kuznetsov <span style="font-size:9px;color:var(--muted);margin-left:2px;">no update this period</span></div>
+        <div class="person exiting-soon"><span class="rd rd-be"></span>Mikhail Gusev <span style="font-size:9px;color:#92400e;font-weight:700;margin-left:2px;">⚑ exits Oct 6 (4 days) · structured handover to successor underway</span></div>
       </div>
+    </div>
 
+    <!-- SUPERAPP — 3 FTE -->
+    <div class="team-card">
+      <div class="tc-hdr" style="background:#4d7c0f;">
+        <span class="tc-name">SuperApp <span style="font-size:10px;opacity:.8;">· highest-rated stream per Karim Sallam</span></span>
+        <span class="tc-count">3</span>
+      </div>
+      <div class="tc-body">
+        <div class="person"><span class="rd rd-fe"></span>Ashot Martirosyan <span style="font-size:9px;color:var(--muted);margin-left:2px;">absorbing extra PR-review load from slower parallel contributors</span></div>
+        <div class="person"><span class="rd rd-fe"></span>Yuriy Kalugin <span style="font-size:9px;color:var(--green);margin-left:2px;">✅ engagement extended through December, confirmed this week</span></div>
+        <div class="person"><span class="rd rd-qa"></span>Haykanush Abelyan <span style="font-size:9px;color:var(--muted);margin-left:2px;">QA Lead — no update this period</span></div>
+      </div>
     </div>
 
     <!-- DESIGN SYSTEM + AI STREAM + JIRA — merged, ~2 FTE (Design System now 0) -->
-    <div class="team-card" style="grid-column:span 3;">
+    <div class="team-card">
       <div class="tc-hdr" style="background:#475569;">
         <span class="tc-name">Design System, UI Libs &amp; Marketing · AI Stream · Jira <span style="font-size:10px;font-weight:400;opacity:.8;">· Design System now 0 FTE, paused</span></span>
         <span class="tc-count">~2.0</span>
       </div>
       <div class="tc-body">
-        <div class="person" style="width:100%;opacity:.7;"><span class="rd" style="background:#d1d5db;"></span><em>Design System — 0 active, paused since Iegor Kosten's Sep 30 exit</em></div>
-        <div class="person" style="width:100%"><span class="rd rd-be"></span>Suat Guzel <span style="font-size:9px;color:var(--muted);margin-left:2px;">AI Stream, solo on 3 sub-products — no update this period</span></div>
-        <div class="person" style="width:100%"><span class="rd rd-pm"></span>Anton Pakhalchuk <span style="font-size:9px;color:var(--muted);margin-left:2px;">Jira — no material update this period</span></div>
+        <div class="person" style="opacity:.7;"><span class="rd" style="background:#d1d5db;"></span><em>Design System — 0 active, paused since Iegor Kosten's Sep 30 exit</em></div>
+        <div class="person"><span class="rd rd-be"></span>Suat Guzel <span style="font-size:9px;color:var(--muted);margin-left:2px;">AI Stream, solo on 3 sub-products — no update this period</span></div>
+        <div class="person"><span class="rd rd-pm"></span>Anton Pakhalchuk <span style="font-size:9px;color:var(--muted);margin-left:2px;">Jira — no material update this period</span></div>
       </div>
     </div>
 
